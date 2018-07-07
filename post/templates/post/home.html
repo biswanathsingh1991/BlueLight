@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'post/css/post_home.css' %}" type="text/css"> {% endblock %}
 {% block title %}<title>Home</title>{% endblock %} {% block left %}
 <div class="right_menu">
-  <a href="{% url 'post:listpost' %}">All post</a>
+  <a href="{% url 'post:listpost' %}">MY post</a>
 </div>
 {% endblock %} {% block body %} {% if object_list %} {% for post in object_list %}
 

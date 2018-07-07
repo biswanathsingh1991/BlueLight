@@ -143,7 +143,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
 
-
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # authentication url
 
