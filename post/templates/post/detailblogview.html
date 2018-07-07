@@ -1,0 +1,24 @@
+{% extends 'core_base.html' %} {% load static %}{% block link %} {% endblock %} {% block body %}
+<div class="">
+    {% if detail_blog %}
+
+    <div class="">
+        {{ detail_blog.title }}
+        <div class="">
+            <a href="{% url 'blog:updateblog' detail_blog.pk %}">
+                <button type="button" name="button">Updateblog</button>
+            </a>
+
+            <a href="{% url 'blog:deleteblogview' detail_blog.pk %}"><button type="button" name="button" onclick="deletepopup()">
+            delete</button></a>
+
+
+        </div>{{ detail_blog.user }} {% if detail_blog.image %}
+        <img src="{{ detail_blog.image.url }}" alt="" width="240" height="240"> {% endif %}{{ detail_blog.containt }}
+    </div>
+    {% endif %}
+</div>
+
+<script type="text/javascript" src="{% static 'blog\js\blog.js' %}">
+</script>
+{% endblock %}

@@ -1,0 +1,67 @@
+#singup-wrapper{
+    margin: 7%;
+}
+
+#singup-wrapper form div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#singup-wrapper form div span{
+    visibility: visible;
+    align-items: center;
+    visibility: hidden;
+}
+#singup-wrapper form div input{
+    border: 0;
+    transition: 1S;
+    width: 150px;
+    box-shadow: none;
+    border-bottom: 3px solid #7070db;
+    height: 35px;
+    margin: 20px ;
+}
+#singup-wrapper form button{
+  transition: 1s;
+}
+#singup-wrapper form div label{
+    margin: 0px;
+    text-align: center;
+}
+#singup-wrapper h1{
+  text-align: center;
+}
+#singup-wrapper form div input:focus{
+
+  width : 60%;
+  border-bottom: 3px solid #fa3380;
+}
+#singup-wrapper form button:hover{
+  background-color: deepskyblue;
+}
+
+@media screen and (max-width:640px){
+    .middle_side{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        }
+    }
+    #singup-wrapper{
+        margin: 7%;
+    }
+    #sidebar-button{
+        display: flex;
+        flex-direction: column;
+    }
+    #sidebar-button span{
+        background-color: grey;
+        margin-bottom: 5px;
+        height: 5px;
+        max-width: 25px;
+
+
+
+    }
+
+}

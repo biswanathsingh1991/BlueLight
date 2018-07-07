@@ -1,0 +1,14 @@
+div.right_menu{
+
+    text-align: center;
+    margin-top: 10px;
+}
+div.right_menu > a {
+        color: #66ffff;
+        font-size: 20px;
+        font-weight: bolder;
+        display: block;
+        font-family: TimesNewRoman, Helvetica, sans-serif;
+        border-bottom: 2px solid black;
+        margin-top: 10px;
+}

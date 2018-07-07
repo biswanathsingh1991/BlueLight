@@ -1,0 +1,83 @@
+{% extends "core_base.html" %}
+{% block link %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock %}
+<!-- style block -->
+{% block style %}
+<style media="screen">
+#about-h1{
+
+}
+</style>
+{% endblock %}
+<!-- style block end -->
+
+<!-- title block -->
+{% block title %}
+    <title>userProfile</title>
+{% endblock %}
+<!-- title block end -->
+
+<!-- body block -->
+{% block body %}
+<div class="row" >
+  <div class="col-3">
+    <img src="{{ object.profile_pic.url }}" alt="" class=""></div></div>
+    <div id="tabs" class="row">
+      <ul class="col-3 list-group">
+        <li class="list-group-item"><a href="#about">About</a></li>
+        <li class="list-group-item"><a href="#info">Info</a></li>
+        <li class="list-group-item"><a href="#contact">Contact</a></li>
+      </ul>
+      <div id="about" class="col-9 ">
+        <h4 class="">{{ object.user }}</h4>
+        <p>First Name - </p>
+        <p>Last Name - </p>
+      </div>
+      <div id="info" class="col-9 ">
+        <h5 class="bg-secondary text-white text-center">Address</h5>
+        <p></p>
+      </div>
+      <div id="contact" class="col-9">
+        <h5 class="bg-secondary text-white text-center">Contact</h5>
+        <p>Mobile No - </p>
+        <p>Mobile Email - </p>
+      </div>
+    </div>
+
+
+
+
+  <!-- end -->
+<!-- <div class="">
+  <h4 class=bg-primary>Personal Details</h4>
+  <div class="">
+    <h6 class="bg-info">User Name</h6>
+    {{ object.user }}</div>
+  <div class="">
+    <h6 class="bg-info">Mobile NO</h6>
+    {{ object.mobile_no }}</div>
+  <div >
+    <h6 class="bg-info ">Email</h6>
+    <p>email. id</p></div>
+  <div >
+    <h6 class="bg-info">address</h6>
+      <div class="">{{ object.country }}</div>
+      <div class="">{{ object.city }}</div>
+      <div class="">{{ object.zipcode }}</div></div>
+    </div>
+<a href="{% url 'core:userprofileedit' object.id %}">profileUpdate</a>
+<a href="{% url 'account_change_password' %}">Password Change</a> -->
+{% endblock %}
+{% block script %}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#tabs" ).tabs();
+} );
+</script>
+{% endblock %}
+<!-- body block end -->

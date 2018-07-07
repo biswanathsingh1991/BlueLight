@@ -1,0 +1,9 @@
+
+.box-height{
+    height: 100%;
+    padding: .5px;
+    border-right: 1px solid black;
+}
+.home-grey{
+    background-color: grey;
+}

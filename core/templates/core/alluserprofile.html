@@ -1,0 +1,48 @@
+{% extends 'core_base.html' %} {% block style %}
+<style media="screen">
+    .profile-container {
+        display: flex;
+        flex-direction: row;
+        justify-content : space-between;
+    }
+
+    .profile-container span {
+        visibility: hidden;
+    }
+</style>
+{% endblock %} {% block body %} {% for profile in object_list %}
+<div class="profile-container">
+  <div class="">
+    <div class="">{{ profile }}<span >{{ profile.id }}</span></div>
+    <img src="{{ profile.profile_pic.url }}" alt="" height="80" width="80"></div>
+    <button type="submit" class="btn btn-lg btn-outline-success" name="button">Add</button>
+</div>
+<hr class="">
+{% endfor %} {% endblock %} {% block script %}
+<script type="text/javascript">
+
+    $(".profile-container").each(function(){
+        $(this).find("button").click(function(e){
+
+            var sp =$(this).siblings("span").get(0);
+             var profile = $(sp).text();
+             $.ajax({
+                 url: '/addfriend',
+                 type: 'GET',
+                 dataType: 'json',
+                  data: {
+                      "profile": profile
+             },
+                success: function(data){
+                    alert("done");
+                    if (data.mssg){
+                        alert(data.mssg);
+
+                    }
+            }
+        });
+            console.log($(this).text("added"))
+
+    });
+        });
+</script> {% endblock %}

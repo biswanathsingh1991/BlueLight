@@ -1,0 +1,26 @@
+{% extends 'core_base.html' %}{% load static %} {% block link %}
+<link rel="stylesheet" href="{% static 'core/css/singup.css' %}" type="text/css">{% endblock %} {% block body %}
+<div id="singup-wrapper">
+    <h1 id="singup_header">Blog Update</h1>
+    <form class="sing-up" action="#" method="post" enctype="multipart/form-data" onsubmit="submitpopup();">{% csrf_token %}
+        <label for="id_userprofile">{{ form.userprofile.label_tag }}</label>
+        <!-- <input type="text" name="username" id="username" value="usernamee"> -->
+        {{ form.userprofile }}
+        <label for="id_title">{{ form.title.label_tag }}</label>
+        <!-- <input type="text" name="FirstName" id="FirstName" value="Enter Your first name"> -->
+        {{ form.title }}
+        <label for="id_containt">{{ form.containt.label_tag }}</label>
+        <!-- <input type="text" name="LastName" id="LastName" value="Enter Your first name"> -->
+        {{ form.containt }}
+        <label for="id_image">{{ form.image.label_tag }}</label>
+        <!-- <input type="email" name="Emali" id="Emali" value="Enter Your email"> -->
+        {{ form.image }}
+        <button type="submit" name="submit">Update Blog</button>
+    </form>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/file-uploader/5.16.2/all.fine-uploader/all.fine-uploader.core.js">
+
+</script>
+<script type="text/javascript" scr={% static 'bolg/js/blog.js' %}>
+</script>
+{% endblock %}

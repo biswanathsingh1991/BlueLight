@@ -1,0 +1,50 @@
+{% extends 'core_base.html' %}{% load static %} {% block link %}
+<link rel="stylesheet" href="{% static 'core/css/singup.css' %}" type="text/css">
+
+<!-- <link rel="stylesheet" media="screen and (max-width:640px)" href="{% static 'core/css/singup_mobile.css' %}" type="text/css"> -->
+
+{% endblock %} {% block title %}
+<title>Singup</title>{% endblock %} {% block style %}
+<style media="screen">
+
+</style>
+{% endblock %}
+
+
+<!-- body  -->
+{% block body %}
+<div id="sidebar-button">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<div id="singup-wrapper">
+    <h1 id="singup_header">Sign up</h1>
+    <form class="sing-up" action="#" method="post">{% csrf_token %}
+        <div class="">
+            {{ form.username.errors }} <span id="username_validation_error">Biswanath</span>{{ form.username.label_tag }}
+             {{ form.username }}
+
+        </div>
+        <div class="">
+            {{ form.email.errors }}
+            <span id="email_validation_error">Biswanath</span>{{ form.email.label_tag }}
+            {{ form.email }}
+
+        </div>
+        <div class="">
+            {{ form.email2.errors }} <span>Biswanath</span>{{ form.email2.label_tag }}
+            {{ form.email2 }}
+        </div>
+        <div class="">
+            {{ form.password1.errors }}<span id="password_validation_error">Biswanath</span> {{ form.password1.label_tag }} {{ form.password1 }}
+
+        </div>
+        <div class="">
+            {{ form.password2.errors }}  <span>Biswanath</span> {{ form.password2.label_tag }} {{ form.password2 }}
+
+        </div>
+        <button type="submit" class=" btn btn-lg btn-block rounder border-primary" name="submit">Creat my account</button>
+    </form>
+</div>
+{% endblock %}

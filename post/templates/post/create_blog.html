@@ -1,0 +1,20 @@
+{% extends 'core_base.html' %} {% block body %}
+<h1 class="border border-danger p-auto">Create Blog</h1>
+
+<form class=""  method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="id_title">Title</label>{{ form.title }}
+
+      <div class="form-group">
+        <label for="id_title d-block">Conatint</label>
+        {{ form.containt }}
+
+        <div class="form-group">
+          <label for="id_title">Image</label>{{ form.image }}
+    </div>
+    <button type="submit" name="button" class="btn btn-primary">Submit</button>
+
+
+</form>
+{% endblock %}

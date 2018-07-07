@@ -1,0 +1,23 @@
+{% extends 'core_base.html' %} {% load static %} {% block link %}
+
+<link rel="stylesheet" media="screen and (max-width:640px)"href="{% static 'core/css/singup_mobile.css' %}" type="text/css">{% endblock %}
+
+
+
+{% block middle %}
+<div id="singup-wrapper">
+    <h1 id="singup_header">Sign up</h1>
+    <form class="sing-up" action="#" method="post">{% csrf_token %} {{ form.username.errors }}
+        <label for="id_username">{{ form.username.label_tag }}</label> {{ form.username }}{{ form.email.errors }}
+        <label for="id_email">{{ form.email.label_tag }}</label> {{ form.email }}{{ form.email2.errors }}
+        <label for="id_email">{{ form.email2.label_tag }}</label> {{ form.email2 }}{{ form.password1.errors }}
+        <label for="id_password1">{{ form.password1.label_tag }}</label> {{ form.password1 }}{{ form.password2.errors }}
+        <label for="id_password2">{{ form.password2.label_tag }}</label> {{ form.password2 }}
+        <button type="submit" name="submit">Creat my account</button>
+    </form>
+</div>
+
+{% endblock %} {% block script %}
+<script type="text/javascript" src="{% static 'blog/js/signup.js' %}">
+</script>
+{% endblock %}

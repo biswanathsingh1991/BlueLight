@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    {% for object in object_solo %}
+    {{ object.blog_object }}
+    1st loop end
+
+    {% if object.bolg_comment %}
+    {{object.bolg_comment}}
+      {% for comment in object.bolg_comment %}
+     <div>{{ comment }}</div>{% endfor %}{% endif %}
+      <hr>
+    {% endfor %}
+</body>
+
+</html>

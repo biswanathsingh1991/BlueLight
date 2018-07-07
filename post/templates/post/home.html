@@ -1,0 +1,117 @@
+{% extends 'core_base.html' %} {% load static %}{% block link %}
+<link rel="stylesheet" href="{% static 'post/css/post_home.css' %}" type="text/css"> {% endblock %}
+{% block title %}<title>Home</title>{% endblock %} {% block left %}
+<div class="right_menu">
+  <a href="{% url 'post:listpost' %}">All post</a>
+</div>
+{% endblock %} {% block body %} {% if object_list %} {% for post in object_list %}
+
+<div class="card">
+  <div class="card-header text-monospace">
+    <img class="rounded-circle mr-3" src="{{ comment.post.post_userprofile.profile_pic.url }}" alt="" height="40" width="40">{{ posts.post_object.userprofile }}
+  </div>
+  {% if post.image %}
+  <img src="{{ post.image.url }}" class="card-img-top" alt=""> {% else %}
+  <div class="">
+    <img src="{% static 'post/img/no_image.png' %}" class="card-img-top" alt="">
+  </div>
+  {% endif %}
+  <div class="card-body">
+    <div class="border bor-primary">
+      <a href="#">
+      <i class="fa fa-ship" ></i></a>
+    </div>
+    <h1 class="card-title">
+                  {{ post }}
+          </h1>
+    <p class="card-text">{{ post.containt }}
+      <p>
+    {% if posts.post_comment %}
+    {% for comment in posts.post_comment %}
+    <div class="bg-info comment_section">
+      <p class="card-text "><img src="{{ comment.userprofile.profile_pic.url }}" class="rounded-circle mr-3"alt="" height="40" width="40">{{ comment }}</p> <hr> </div>
+    {% endfor %}{% endif %}
+    <div class="card-footer">
+      <p class="card-text" class= "">{{ posts.post_object.id }}
+        <p>
+      <form class="comment-form">
+        <label for="comment" class="sr-only" >comment</label>
+        <input type="text" id="comment" placeholder="comment" class="col-10">
+        <button type="submit" role="submit" class="btn btn-primary" name="button">submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endfor %}{% endif %}
+<div class="pagination">
+    <span class="step-links">
+        {% if paginator.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ paginator.number }} of {{ paginator.paginator.num_pages }}.
+        </span>
+
+        {% if paginator.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">next</a>
+            <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span> </div>{% endblock %}
+    {% block right %}
+<div class="right_menu">
+  <a href="{% url 'post:createpost' %}">Create post</a>
+  <a href="">Create Update</a>
+  <a href="#">Create Delete</a>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+//comment submit script
+$(".comment-form").each(function(){
+  $(this).submit(function(e){
+     e.preventDefault();
+     var update_comment = $(this).find("input").val();
+     $(this).find("input").val("");
+     var object_id = $(this).parent().find("p").text();
+     var url = "{% url "post:post_comment_post" %}"
+     $.ajax({
+       url: url,
+       dataType: "json",
+       type: "POST",
+       data:{
+         comment: update_comment ,
+         object_id: object_id,
+         csrfmiddlewaretoken: "{{ csrf_token }}"
+       },
+      success: function(data){
+        console.log("success")
+       }
+     });
+  });
+});
+// comment submit script end
+
+//comment refresh
+
+
+
+// $(window).load(){
+//   $(".comment-form").each(function(){
+//     setInterval( function(){
+//   $.ajax({
+//     url: //somthing,
+//     type: "GET",
+//     success: function(data){
+//
+//     },
+//   })
+// },300);
+// };
+// };
+
+
+//comment refresh end
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'core_base.html' %} {% load static %}
+
+{% block body %}
+    {% if object_list %} {% for post in object_list %}
+    <div class="card">
+        <div class="card-header">
+            {{ post.userprofile }}
+        </div>
+        {% if post.image %}
+            <img src="{{post.image.url}}" class="card-img-top" alt="">
+        {% else %}
+        <div class="">
+            <img src="{% static 'post/img/no_image.png' %}" class="card-img-top" alt="">
+        </div>
+        {% endif %}
+        <div class="card-body">
+          <h1 class="card-title">
+            {{ post}}
+          </h1>
+          <p class="card-text">{{ post.containt }}
+            <p>
+            <a class="card-link btn btn-lg btn-primary" href="{% url 'post:updatepost' post.pk %}  ">Update</a>
+            <a class="card-link btn btn-lg btn-primary" href="{% url 'post:deletepost' post.pk %}  ">Delete</a>
+        </div>
+    </div>
+   {% endfor %}{% endif %}
+{% endblock %}
+{% block right %}
+<div class="btn-group-vertical " role="group">
+  <button type="button" class=" btn-block btn-lg" name="button">
+<a href="{% url 'post:createpost' %}">CreatePost</a>
+  </button>
+  <button type="button" class="btn-block btn-lg" name="button">n</button>
+  <button type="button" class="btn-block btn-lg" name="button">n</button>
+
+</div>
+{% endblock %}
