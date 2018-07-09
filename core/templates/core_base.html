@@ -8,11 +8,15 @@
 {% block style %}
 {% endblock %}
  {% block title %}
+ <style media="screen">
+
+
+ </style>
     <title></title>{% endblock %}
 </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -42,13 +46,13 @@
 
 <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-2 " >
+      <div class="col-lg-2  position-fixed sidebar_color mt-5 bg-secondary" >
         {% block left %}{% endblock %}
       </div>
-      <div class="col-lg-8 ">
+      <div class="col-lg-8 offset-lg-2 mt-5">
         {% block body %}{% endblock %}
       </div>
-      <div class="col-lg-2 ">
+      <div class="col-lg-2  position-fixed offset-lg-10 sidebar_color mt-5 bg-secondary">
         {% block right %}{% endblock %}
       </div>
     </div>
