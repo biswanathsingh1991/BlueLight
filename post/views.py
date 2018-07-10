@@ -37,7 +37,7 @@ class HomeView(ListView):
         # return context
         for object in object_list:
             object_cmd_obj[object.title] = {'post_comment': object.postcomment_set.all(),
-                                        'post_userprofile': object.userprofile}
+                                            'post_userprofile': object.userprofile}
             context['comment'] = object_cmd_obj
             context.update(kwargs)
             return context
@@ -45,13 +45,18 @@ class HomeView(ListView):
 
 class CreatePost(CreateView):
     model = Post
-    template_name = 'post/create_post.html'
+    template_name = 'post/test.html'
     success_url = ''
     form_class = CreatePost
 
     # def __init__(self, * args, **kwargs):
     #     super(Createpost, self).__init__(*args, **kwargs)
     #     self.initial['userprofile'] = UserProfile.objects.get(pk=2)
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save()
+        super().form_valid(form)
 
 
 class UpdatePost(UpdateView):

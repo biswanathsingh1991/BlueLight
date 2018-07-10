@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from core.models import UserProfile
+from django.template.defaultfilters import slugify
 # Create your models here.
 
 
@@ -13,12 +14,18 @@ class Post(models.Model):
     image = models.ImageField(
         upload_to='Post/%Y/%m/%d/', blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(max_length=50, default="none")
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('Post:home')
+
+    def save(self, *args, **kwargs):
+        self.slug = "{id}-{title}".format(id=slugify(self.id), title=slugify(self.title),
+                                          )
+        return super().save(*args, **kwargs)
 
 
 class PostComment(models.Model):
