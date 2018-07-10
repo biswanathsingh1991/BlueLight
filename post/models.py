@@ -14,17 +14,16 @@ class Post(models.Model):
     image = models.ImageField(
         upload_to='Post/%Y/%m/%d/', blank=True, null=True)
     created = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=50, default="none")
+    slug = models.SlugField(max_length=50, default=0)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('Post:home')
+        return reverse('post:home')
 
     def save(self, *args, **kwargs):
-        self.slug = "{id}-{title}".format(id=slugify(self.id), title=slugify(self.title),
-                                          )
+        self.slug = "{title}".format(title=slugify(self.title))
         return super().save(*args, **kwargs)
 
 
@@ -37,7 +36,7 @@ class PostComment(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.Post_comment
+        return self.post_comment
 
 
 class like(models.Model):

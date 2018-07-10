@@ -26,8 +26,8 @@
           </h1>
     <p class="card-text">{{ post.containt }}
       <p>
-    {% if posts.post_comment %}
-    {% for comment in posts.post_comment %}
+    {% if posts.slug %}
+    {% for comment in posts.slug %}
     <div class="bg-info comment_section">
       <p class="card-text "><img src="{{ comment.userprofile.profile_pic.url }}" class="rounded-circle mr-3"alt="" height="40" width="40">{{ comment }}</p> <hr> </div>
     {% endfor %}{% endif %}
@@ -45,18 +45,18 @@
 {% endfor %}{% endif %}
 <div class="pagination">
     <span class="step-links">
-        {% if paginator.has_previous %}
+        {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
-            Page {{ paginator.number }} of {{ paginator.paginator.num_pages }}.
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
 
-        {% if paginator.has_next %}
-            <a href="?page={{ contacts.next_page_number }}">next</a>
-            <a href="?page={{ contacts.paginator.num_pages }}">last &raquo;</a>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span> </div>{% endblock %}
     {% block right %}

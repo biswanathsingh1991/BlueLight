@@ -3,23 +3,15 @@ from django.views.generic import ListView, DetailView
 from .models import Post
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from . form import CreatePost, UpdatePost
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
-from django.contrib.auth.views import TemplateView
-# Create your views here.
-from .models import PostComment
 from core.models import UserProfile
 from django.http import JsonResponse
-from django.core.paginator import Paginator
 
 
 class HomeView(ListView):
     model = Post
-    template_name = 'post/home.html'
-    # context_object_name = 'object_post'
-    paginate_by = 2
+    template_name = 'post/test.html'
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
 
@@ -36,27 +28,23 @@ class HomeView(ListView):
         # context.update(kwargs)
         # return context
         for object in object_list:
-            object_cmd_obj[object.title] = {'post_comment': object.postcomment_set.all(),
+            object_cmd_obj[object.slug] = {'post_comment': object.postcomment_set.all(),
                                             'post_userprofile': object.userprofile}
             context['comment'] = object_cmd_obj
             context.update(kwargs)
-            return context
+        return context
 
 
 class CreatePost(CreateView):
     model = Post
-    template_name = 'post/test.html'
-    success_url = ''
+    template_name = 'post/create_post.html'
+    success_url = '/'
     form_class = CreatePost
 
     # def __init__(self, * args, **kwargs):
     #     super(Createpost, self).__init__(*args, **kwargs)
     #     self.initial['userprofile'] = UserProfile.objects.get(pk=2)
 
-    def form_valid(self, form):
-        """If the form is valid, save the associated model."""
-        self.object = form.save()
-        super().form_valid(form)
 
 
 class UpdatePost(UpdateView):
@@ -88,13 +76,7 @@ class DeletePostView(DeleteView):
         return self.post(self, *args, **kwargs)
 
 
-def test(request):
-    if request.user.is_authenticated:
-        return render(request, 'post/test.html', {'user': UserProfile.objects.get(user=request.user)})
-
-
 def post_comment_post(request):
-
     if request.method == "POST":
         comment_text = request.Post.get("comment")
         print(comment_text)

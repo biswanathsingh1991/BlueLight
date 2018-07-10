@@ -5,12 +5,24 @@
     <meta charset="utf-8">
     <title></title>
 </head>
-<form   method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-<button type="submit" name="submit">submit</button>
-</form>
+
 <body>
+  <h1>start</h1>
+ {% for post in object_list %}
+{% for key, value in comment.items %}
+
+{% if post.slug == "8-bisaweir" %}
+key -- {{ key }}
+<br>
+value -- {{ value }}
+<br>
+{% endif %}
+1st iter
+<hr>
+{% endfor %}
+end iter
+<hr>
+{% endfor %}
 
 </body>
 
