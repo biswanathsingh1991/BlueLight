@@ -5,7 +5,6 @@
   <a href="{% url 'post:listpost' %}">MY post</a>
 </div>
 {% endblock %} {% block body %} {% if object_list %} {% for post in object_list %}
-
 <div class="card">
   <div class="card-header text-monospace">
     <img class="rounded-circle mr-3" src="{{ comment.post.post_userprofile.profile_pic.url }}" alt="" height="40" width="40">{{ posts.post_object.userprofile }}
@@ -14,26 +13,22 @@
   <img src="{{ post.image.url }}" class="card-img-top" alt=""> {% else %}
   <div class="">
     <img src="{% static 'post/img/no_image.png' %}" class="card-img-top" alt="">
-  </div>
-  {% endif %}
+  </div>{% endif %}
   <div class="card-body">
     <div class="border bor-primary">
-      <a href="#">
-      <i class="fa fa-ship" ></i></a>
+      <a href="#"><i class="fa fa-ship" ></i></a>
     </div>
-    <h1 class="card-title">
-                  {{ post }}
-          </h1>
-    <p class="card-text">{{ post.containt }}
-      <p>
-    {% if posts.slug %}
-    {% for comment in posts.slug %}
+    <h1 class="card-title">{{ post }}</h1>
+    <p class="card-text">{{ post.containt }}<p>
+    {% if comment %}
+    {% for key, value in comment.items %}
+    {% if key == post.slug %}
+     {% for i in value.post_comment %}
     <div class="bg-info comment_section">
-      <p class="card-text "><img src="{{ comment.userprofile.profile_pic.url }}" class="rounded-circle mr-3"alt="" height="40" width="40">{{ comment }}</p> <hr> </div>
-    {% endfor %}{% endif %}
+      <p class="card-text "><img src="{{ value.post_userprofile.profile_pic.url }}" class="rounded-circle mr-3"alt="" height="40" width="40">{{ i }}</p> <hr> </div>
+    {% endfor %}{% endif %}{% endfor %}{% endif %}
     <div class="card-footer">
-      <p class="card-text" class= "">{{ posts.post_object.id }}
-        <p>
+      <p class="card-text" class= "">{{ posts.post_object.id }}<p>
       <form class="comment-form">
         <label for="comment" class="sr-only" >comment</label>
         <input type="text" id="comment" placeholder="comment" class="col-10">
@@ -49,11 +44,9 @@
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ page_obj.previous_page_number }}">previous</a>
         {% endif %}
-
         <span class="current">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
-
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">next</a>
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>

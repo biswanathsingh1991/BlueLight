@@ -10,7 +10,7 @@ from django.http import JsonResponse
 
 class HomeView(ListView):
     model = Post
-    template_name = 'post/test.html'
+    template_name = 'post/home.html'
     paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -29,7 +29,7 @@ class HomeView(ListView):
         # return context
         for object in object_list:
             object_cmd_obj[object.slug] = {'post_comment': object.postcomment_set.all(),
-                                            'post_userprofile': object.userprofile}
+                                           'post_userprofile': object.userprofile}
             context['comment'] = object_cmd_obj
             context.update(kwargs)
         return context
@@ -44,7 +44,6 @@ class CreatePost(CreateView):
     # def __init__(self, * args, **kwargs):
     #     super(Createpost, self).__init__(*args, **kwargs)
     #     self.initial['userprofile'] = UserProfile.objects.get(pk=2)
-
 
 
 class UpdatePost(UpdateView):

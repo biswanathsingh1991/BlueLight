@@ -8,21 +8,16 @@
 
 <body>
   <h1>start</h1>
- {% for post in object_list %}
+{% for object in object_list %}
 {% for key, value in comment.items %}
-
-{% if post.slug == "8-bisaweir" %}
+{% if key == object.slug %}
 key -- {{ key }}
 <br>
 value -- {{ value }}
-<br>
-{% endif %}
-1st iter
-<hr>
-{% endfor %}
+<hr>{% endif %}
+{% endfor %}{% endfor %}
 end iter
-<hr>
-{% endfor %}
+
 
 </body>
 
