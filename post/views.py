@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Post
+from .models import Post, PostComment
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from . form import CreatePost, UpdatePost
 from django.urls import reverse_lazy
 from core.models import UserProfile
 from django.http import JsonResponse
+
 
 
 class HomeView(ListView):
@@ -77,15 +78,18 @@ class DeletePostView(DeleteView):
 
 def post_comment_post(request):
     if request.method == "POST":
-        comment_text = request.Post.get("comment")
-        print(comment_text)
-        object_id = int(request.POST.get("object_id"))
-        comment_post_object = post.objects.get(id=object_id)
-        to_be_add_comment = postComment.objects.create(
-            post_comment=comment_text,
-            userprofile=request.user.userprofile
-        )
-        to_be_add_comment.save()
-        comment_post_object.postcomment_set.add(to_be_add_comment)
-        data = {"true": "ture"}
+        if request.POST.get("comment") and request.POST.get("object_id"):
+            comment_text = request.POST.get("comment")
+            print(comment_text)
+            object_id = int(request.POST.get("object_id"))
+            print(object_id)
+            comment_post_object = Post.objects.get(id=object_id)
+            to_be_add_comment = PostComment.objects.create(
+                    post_comment=comment_text,
+                    userprofile=request.user.userprofile)
+            to_be_add_comment.save()
+            comment_post_object.postcomment_set.add(to_be_add_comment)
+            data = {"true": "ture"}
+        else:
+            data = "ture"
     return JsonResponse(data)

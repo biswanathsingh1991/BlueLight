@@ -29,6 +29,7 @@
     {% endfor %}{% endif %}{% endfor %}{% endif %}
     <div class="card-footer">
       <p class="card-text" class= "">{{ posts.post_object.id }}<p>
+      <span class="d-none">{{ post.id }}</span>
       <form class="comment-form">
         <label for="comment" class="sr-only" >comment</label>
         <input type="text" id="comment" placeholder="comment" class="col-10">
@@ -68,17 +69,19 @@ $(".comment-form").each(function(){
      var update_comment = $(this).find("input").val();
      $(this).find("input").val("");
      var object_id = $(this).parent().find("p").text();
-     var url = "{% url "post:post_comment_post" %}"
+     var url = "{% url "post:post_comment_post" %}";
+     // console.log(ajax_start)
      $.ajax({
-       url: url,
+       url: url ,
        dataType: "json",
        type: "POST",
        data:{
          comment: update_comment ,
-         object_id: object_id,
-         csrfmiddlewaretoken: "{{ csrf_token }}"
+         object_id:  object_id ,
+         csrfmiddlewaretoken: "{{ csrf_token }}",
        },
       success: function(data){
+
         console.log("success")
        }
      });
