@@ -11,13 +11,15 @@
   </div>
   {% if post.image %}
   <img src="{{ post.image.url }}" class="card-img-top" alt=""> {% else %}
-  <div class="">
-    <img src="{% static 'post/img/no_image.png' %}" class="card-img-top" alt="">
-  </div>{% endif %}
+  <img src="{% static 'post/img/no_image.png' %}" class="card-img-top" alt="">
+  {% endif %}
   <div class="card-body">
-    <div class="border bor-primary">
-      <a href="#"><i class="fa fa-ship" ></i></a>
+    <div class="btn-group btn-group-lg " role="group">
+      <button class="w-30" type="button" name="button">Like</button>
+      <button class="w-30" type="button" name="button">Comment</button>
+      <button class="" type="button" name="button">Share</button>
     </div>
+    <hr>
     <h1 class="card-title">{{ post }}</h1>
     <p class="card-text">{{ post.containt }}<p>
     {% if comment %}
@@ -39,20 +41,32 @@
   </div>
 </div>
 {% endfor %}{% endif %}
-<div class="pagination">
-    <span class="step-links">
+<nav>
+<ul class="pagination">
+    <!-- <span class="step-links"> -->
         {% if page_obj.has_previous %}
+        <li class="page-item disabled">
             <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        </li>
         {% endif %}
-        <span class="current">
+        <!-- <span class="current"> -->
+        <li class="page-item ">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
+        <!-- </span> --></li>
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+        </li>
+        <li class="page-item ">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        </li>
         {% endif %}
-    </span> </div>{% endblock %}
+    <!-- </span>  -->
+  </ul>
+    </nav>{% endblock %}
     {% block right %}
 <div class="right_menu">
   <a href="{% url 'post:createpost' %}">Create post</a>
@@ -61,6 +75,7 @@
 </div>
 {% endblock %}
 {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script type="text/javascript">
 //comment submit script
 $(".comment-form").each(function(){
