@@ -8,3 +8,6 @@ from . serializers import TestModelSerializer
 class TestView(ListAPIView):
     queryset = TestModel.objects.all()
     serializer_class = TestModelSerializer
+
+class LikedBool(ListAPIView):
+    pass

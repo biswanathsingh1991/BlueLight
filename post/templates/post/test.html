@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load static %}
 <html lang="en" dir="ltr">
 
 <head>
@@ -7,18 +7,14 @@
 </head>
 
 <body>
-  <h1>start</h1>
-{% for object in object_list %}
-{% for key, value in comment.items %}
-{% if key == object.slug %}
-key -- {{ key }}
-<br>
-value -- {{ value }}
-<hr>{% endif %}
-{% endfor %}{% endfor %}
-end iter
+<div id="">
+  [[name]]
 
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
+<script type="text/javascript" src="{% static 'post/js/post_like.js' %}"></script>
 </body>
 
 </html>

@@ -4,10 +4,13 @@
 <div class="right_menu">
   <a href="{% url 'post:listpost' %}">MY post</a>
 </div>
+<!-- <div id="post_like">
+<h1>vue instance [[name]]</h1>
+</div> -->
 {% endblock %} {% block body %} {% if object_list %} {% for post in object_list %}
 <div class="card">
   <div class="card-header text-monospace">
-    <img class="rounded-circle mr-3" src="{{ comment.post.post_userprofile.profile_pic.url }}" alt="" height="40" width="40">{{ posts.post_object.userprofile }}
+    <img class="rounded-circle mr-3" src="{{ comment.post.post_userprofile.profile_pic.url }}" alt="" height="40" width="40">{{ post.post_object.userprofile }}
   </div>
   {% if post.image %}
   <img src="{{ post.image.url }}" class="card-img-top" alt=""> {% else %}
@@ -15,7 +18,14 @@
   {% endif %}
   <div class="card-body">
     <div class="btn-group btn-group-lg " role="group">
-      <button class="w-30" type="button" name="button">Like</button>
+      {% if like %}
+      {% for key, value in like.items %}
+      {% if key == post.slug %}
+      {% if value.post_like %}
+      <button class="w-30 btn-primary"  type="button" name="button">Like</button>
+      {% else %}
+      <button class="w-30"  type="button" name="button">Like</button>
+      {% endif %}{% endif %}{% endfor %}{% endif %}
       <button class="w-30" type="button" name="button">Comment</button>
       <button class="" type="button" name="button">Share</button>
     </div>
@@ -25,9 +35,9 @@
     {% if comment %}
     {% for key, value in comment.items %}
     {% if key == post.slug %}
-     {% for i in value.post_comment %}
+     {% for img in value.post_comment %}
     <div class="bg-info comment_section">
-      <p class="card-text "><img src="{{ value.post_userprofile.profile_pic.url }}" class="rounded-circle mr-3"alt="" height="40" width="40">{{ i }}</p> <hr> </div>
+      <p class="card-text "><img src="{{ value.post_userprofile.profile_pic.url }}" class="rounded-circle mr-3"alt="" height="40" width="40">{{ img }}</p> <hr> </div>
     {% endfor %}{% endif %}{% endfor %}{% endif %}
     <div class="card-footer">
       <p class="card-text" class= "">{{ posts.post_object.id }}<p>
@@ -76,6 +86,10 @@
 {% endblock %}
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+<script src="{% static 'post/js/post_like.js' %}">
+
+</script>
 <script type="text/javascript">
 //comment submit script
 $(".comment-form").each(function(){
@@ -124,5 +138,6 @@ $(".comment-form").each(function(){
 
 
 //comment refresh end
+
 </script>
 {% endblock %}

@@ -2,6 +2,7 @@ from django.urls import path
 from . views import (HomeView, CreatePost, UpdatePost, ListPost,
                      DetailPostView, DeletePostView, post_comment_post)
 from . import views
+from django.shortcuts import render
 
 app_name = 'post'
 urlpatterns = [
@@ -15,6 +16,7 @@ urlpatterns = [
     path('deletepost/<int:pk>/', DeletePostView.as_view(),
          name='deletepost'),
     path('post_comment_post/', post_comment_post, name='post_comment_post'),
+    path('test/', lambda request: render(request, 'post/test.html'))
 
 
 

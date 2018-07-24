@@ -1,12 +1,12 @@
 var comment = new vue({
-  el : '#cmnt'
+  el : '#cmnt',
   data:{
 
-  }
+  },
   method:{
 
-  }
+  },
   computed:{
 
-  }
-})
+  },
+});

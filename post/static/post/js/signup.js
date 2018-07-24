@@ -3,7 +3,6 @@ $(document).ready(function(e){
 });
 $("#id_username").change(function () {
   var username = $(this).val();
-
   $.ajax({
     url: '/ajaxableusername/',
     data: {
