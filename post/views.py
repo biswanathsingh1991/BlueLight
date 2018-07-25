@@ -8,7 +8,6 @@ from core.models import UserProfile
 from django.http import JsonResponse
 
 
-
 class HomeView(ListView):
     model = Post
     template_name = 'post/home.html'
@@ -20,14 +19,7 @@ class HomeView(ListView):
         object_list = context['object_list']
         object_cmd_obj = {}
         object_like_obj = {}
-        # # previous logic
-        # for object in object_list:
-        #     object_queryset = object.postcomment_set.all()
-        #     object_solo.append({'post_object': object, 'post_comment': object_queryset})
-        # context['object_solo'] = object_solo
-        # context['user_image'] = self.request.user.userprofile.profile_pic
-        # context.update(kwargs)
-        # return context
+
         for object in object_list:
             object_cmd_obj[object.slug] = {'post_comment': object.postcomment_set.all(),
                                            'post_userprofile': object.userprofile,
@@ -83,13 +75,11 @@ def post_comment_post(request):
     if request.method == "POST":
         if request.POST.get("comment") and request.POST.get("object_id"):
             comment_text = request.POST.get("comment")
-            print(comment_text)
             object_id = int(request.POST.get("object_id"))
-            print(object_id)
             comment_post_object = Post.objects.get(id=object_id)
             to_be_add_comment = PostComment.objects.create(
-                    post_comment=comment_text,
-                    userprofile=request.user.userprofile)
+                post_comment=comment_text,
+                userprofile=request.user.userprofile)
             to_be_add_comment.save()
             comment_post_object.postcomment_set.add(to_be_add_comment)
             data = {"true": "ture"}
