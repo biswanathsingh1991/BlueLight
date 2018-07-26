@@ -20,10 +20,11 @@
       {% if like %}
       {% for key, value in like.items %}
       {% if key == post.slug %}
-      {% if value.post_like %} btn-primary {% endif %} {% endif %}{% endfor %}{% endif %} "  type="button" name="button">Like</button>
+      {% if value %} {{ value }} btn-primary {% endif %} {% endif %}{% endfor %}{% endif %} "  type="button" name="button">Like</button>
 
       <button class="w-30" type="button" name="button">Comment</button>
       <button class="" type="button" name="button">Share</button>
+
     </div>
     <hr>
     <h1 class="card-title">{{ post }}</h1>
@@ -145,7 +146,7 @@ $(".post_like").each(function(){
         object_id:  object_id ,
         csrfmiddlewaretoken: "{{ csrf_token }}",
       },
-      sucess(){
+      success(){
         console.log("sucess")
       }
     });

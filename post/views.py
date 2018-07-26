@@ -22,12 +22,11 @@ class HomeView(ListView):
 
         for object in object_list:
             object_cmd_obj[object.slug] = {'post_comment': object.postcomment_set.all(),
-                                           'post_userprofile': object.userprofile,
-                                           'post_like': object.like_set.all()}
+                                           'post_userprofile': object.userprofile}
             object_like_obj[object.slug] = {'post_like': object.like_set.all()}
-            context['comment'] = object_cmd_obj
-            context['like'] = object_like_obj
-            context.update(kwargs)
+        context['comment'] = object_cmd_obj
+        context['like'] = object_like_obj
+        context.update(kwargs)
         return context
 
 
