@@ -40,9 +40,9 @@ class PostComment(models.Model):
 
 
 class Like(models.Model):
-    post_like = models.BooleanField(default=True, editable=False)
-    post = models.ForeignKey(Post,  on_delete=models.CASCADE, default=0)
-    userprofile = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name="post_userprofile", default=0)
+    # post_like = models.BooleanField(default=True, editable=False)
+    post = models.OneToOneField(Post,  on_delete=models.CASCADE, default=0)
+    userprofile = models.ManyToManyField(
+        UserProfile, related_name="post_userprofile", default=0)
     # creade = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

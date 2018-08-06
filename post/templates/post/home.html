@@ -14,17 +14,10 @@
   <img src="{% static 'post/img/no_image.png' %}" class="card-img-top" alt="">
   {% endif %}
   <div class="card-body">
-    <div class="btn-group btn-group-lg " role="group">
-
-      <button class="w-30  post_like
-      {% if like %}
-      {% for key, value in like.items %}
-      {% if key == post.slug %}
-      {% if value %} {{ value }} btn-primary {% endif %} {% endif %}{% endfor %}{% endif %} "  type="button" name="button">Like</button>
-
+    <div class="btn-group btn-group-lg " id="post_like_cmmnt" role="group">
+      <button class="w-3" v-bind:class={btn-primary : Like}  v-on:click="Like = !Like" type="button" name="button">Like</button>
       <button class="w-30" type="button" name="button">Comment</button>
       <button class="" type="button" name="button">Share</button>
-
     </div>
     <hr>
     <h1 class="card-title">{{ post }}</h1>
@@ -152,6 +145,11 @@ $(".post_like").each(function(){
     });
   });
 });
+
+</script>
+<script type="text/javascript" src="{% static 'post/js/post_like.js' %}">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
 
 </script>
 {% endblock %}
