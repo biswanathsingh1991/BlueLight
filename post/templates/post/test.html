@@ -7,20 +7,27 @@
 </head>
 
 <body>
-<div id="">
-  {% for key, value in like.items %}
-   {{ key }} -- {{ value }}
-   <hr>
-   {% for i,v  in value.items %}
-{{ v }} {{ request.user.userprofile }}
-   {% endfor %}
-   <br>{% endfor %}
-
+<div id="test_case">
+  <h1>test_case veu</h1>
+  <input type="text" name="" v-model="test_var">
+  {{test_var}}
+[[test_var]]
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
-<script type="text/javascript" src="{% static 'post/js/post_like.js' %}"></script>
-</body>
+<!-- <script type="text/javascript" src="{% static 'post/js/post_like.js' %}"></script>
+</body> -->
 
 </html>
+
+<script type="text/javascript">
+var test = new Vue({
+  delimiters: ['[[', ']]'],
+  el: "#test_case",
+  data:{
+    test_var: "biswa"
+
+  }
+});
+</script>

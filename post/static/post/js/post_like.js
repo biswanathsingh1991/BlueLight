@@ -1,19 +1,9 @@
 var like = new Vue({
-  delimiters: ['{', '}'],
-  el: '#post_like',
+  el: '#post_like_cmmnt',
+  delimiters: ['[[', ']]'],
   data:{
+    name : "biswanat",
+    Like_class: false
+  }
 
-    name : "biswanat"
-  },
-  method:{
-
-  },
-  computed:{
-
-  },
-  created(){
-    this.$http.get('').than(function(data){
-
-    })
-  },
 });

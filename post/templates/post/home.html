@@ -15,10 +15,11 @@
   {% endif %}
   <div class="card-body">
     <div class="btn-group btn-group-lg " id="post_like_cmmnt" role="group">
-      <button class="w-3" v-bind:class={btn-primary : Like}  v-on:click="Like = !Like" type="button" name="button">Like</button>
+      <button  v-bind:class="{btn-primary : ture}"  v-on:click="Like_class = !Like_class" type="button" name="button">Like</button>
       <button class="w-30" type="button" name="button">Comment</button>
       <button class="" type="button" name="button">Share</button>
     </div>
+    [[ name ]] {{ name }}
     <hr>
     <h1 class="card-title">{{ post }}</h1>
     <p class="card-text">{{ post.containt }}<p>
@@ -78,7 +79,6 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script> -->
 
-</script>
 <script type="text/javascript">
 //comment submit script
 $(".comment-form").each(function(){
@@ -104,25 +104,6 @@ $(".comment-form").each(function(){
      });
   });
 });
-// comment submit script end
-
-//comment refresh
-// $(window).load(){
-//   $(".comment-form").each(function(){
-//     setInterval( function(){
-//   $.ajax({
-//     url: //somthing,
-//     type: "GET",
-//     success: function(data){
-//
-//     },
-//   })
-// },300);
-// };
-// };
-//comment refresh end
-
-// like posts
 
 $(".post_like").each(function(){
   $(this).click(function(){
@@ -144,12 +125,13 @@ $(".post_like").each(function(){
       }
     });
   });
-});
+});</script>
 
-</script>
-<script type="text/javascript" src="{% static 'post/js/post_like.js' %}">
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+<script type="text/javascript" src="{% static 'post/js/post_like.js' %}"></script>
 
+{% endblock %}
 
-</script>
+{% block style %}
 {% endblock %}
